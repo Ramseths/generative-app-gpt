@@ -20,6 +20,7 @@ export const AppLayout = ({children}) => {
                             src={user.picture}
                             height={50}
                             width={50}
+                            alt="foto"
                             className="rounded-full"
                         />
                         </div>
