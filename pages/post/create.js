@@ -26,7 +26,7 @@ export default function CreatePost(props) {
     return <div> 
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Genera un artículo sobre:</label>
+          <label>Genera un tutorial sobre:</label>
           <textarea className="resize-none border border-gray-500 w-full block my-3 px-5 py-2 rounded-sm" value={topic} onChange={e => setTopic(e.target.value)}></textarea>
         </div>
         <div>

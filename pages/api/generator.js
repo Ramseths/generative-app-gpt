@@ -7,15 +7,14 @@ export default async function handler(req, res) {
     });
     const openai = new OpenAIApi(config);
 
-    const topic = "Top algortimos de machine learning";
-    const keys = "supervisado, no supervisado, por refuerzo";
+    const {topic, keys} = req.body;
 
     const response = await openai.createCompletion({
         model: 'text-davinci-003',
         temperature: 0,
         max_tokens: 3600,
-        prompt: `Escriba una entrada de blog larga sobre ${topic}, que se dirige a las siguientes palabras clave separadas por comas: ${keys}.
-        El contenido debe ser formateado en SEO-frendly HTML.
+        prompt: `Escriba una entrada de blog larga sobre un tutorial de ${topic}, que se dirige a las siguientes palabras clave separadas por comas: ${keys}.
+        El contenido debe ser formateado en HTML y también el HTML debe tener fragmentos de código.
         La respuesta debe incluir un titulo HTML apropiado y contenido meta de la descripción.
         El formato de regreso debe ser un stringified JSON en el siguiente formato:
         {
@@ -26,5 +25,5 @@ export default async function handler(req, res) {
     });
 
     console.log('Response', response);
-    res.status(200).json({ post: JSON.parse(response.data.choices[0]?.text) });
+    res.status(200).json({ post: JSON.parse(response.data.choices[0]?.text.split("\n").join("")) });
 }

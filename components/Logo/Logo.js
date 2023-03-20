@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export const Logo = () => {
     return (
         <div className="text-3xl text-center py-4">
-            GenerativePost
+            Generative-Code
             <FontAwesomeIcon icon={faLayerGroup} className="text-2xl"/>
         </div>
     );
