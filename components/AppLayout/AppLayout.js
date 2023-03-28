@@ -3,8 +3,7 @@ import Image from "next/image";
 import {useUser} from "@auth0/nextjs-auth0/client";
 import {Logo} from '../Logo';
 
-export const AppLayout = ({children}) => {
-
+export const AppLayout = ({children, posts}) => {
     const {user} = useUser();
 
     return (
@@ -33,8 +32,18 @@ export const AppLayout = ({children}) => {
                         (<Link href="/api/auth/login">Iniciar Sesión</Link>)
                     }
                 </div>
-                <div className="flex-1 overflow-auto bg-gray-600">
-                    lista
+                <div className="px-4 flex-1 overflow-auto bg-gray-600">
+                    {posts.map((post) => (
+                        <Link
+                        key={post._id}
+                        href={`/post/${post._id}`}
+                        className={`py-1 border border-white/0 block text-ellipsis overflow-hidden whitespace-nowrap my-1 px-2 bg-white/10 cursor-pointer rounded-sm ${
+                            postId === post._id ? 'bg-white/20 border-white' : ''
+                        }`}
+                        >
+                        {post.topic}
+                        </Link>
+                    ))}
                 </div>
                 <div className="bg-gray-700 px-2">
                     <Logo />

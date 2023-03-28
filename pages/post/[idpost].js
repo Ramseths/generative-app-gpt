@@ -4,6 +4,7 @@ import { AppLayout } from "../../components/AppLayout";
 import clientPromise from '../../lib/mongodb';
 import { faHashtag } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { getAppProps } from "../../lib/getAppProps";
 
 export default function Post(props) {
 
@@ -50,6 +51,7 @@ export default function Post(props) {
 
   export const getServerSideProps = withPageAuthRequired({
     async getServerSideProps(context){
+      const props = await getAppProps(context);
       const userSession = await getSession(context.req, context.res);
       const client = await clientPromise;
       const db = client.db("GenerativeContent");
@@ -77,7 +79,8 @@ export default function Post(props) {
           title: getPost.title,
           metaDescription: getPost.metaDescription,
           keywords: getPost.keywords,
-          result: getPost.result
+          result: getPost.result,
+          ...props
         }
       }
     }

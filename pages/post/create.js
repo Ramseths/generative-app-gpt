@@ -2,6 +2,7 @@ import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { AppLayout } from "../../components/AppLayout";
+import { getAppProps } from "../../lib/getAppProps";
 
 export default function CreatePost(props) {
     const router = useRouter();
@@ -29,7 +30,7 @@ export default function CreatePost(props) {
     return <div> 
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Introduce el problema:</label>
+          <label>Introduce:</label>
           <textarea className="resize-none border border-gray-500 w-full block my-3 px-5 py-2 rounded-sm" value={topic} onChange={e => setTopic(e.target.value)}></textarea>
         </div>
         <div>
@@ -46,10 +47,11 @@ export default function CreatePost(props) {
     return <AppLayout {...pageProps}> {page} </AppLayout>
   };
 
-export const getServerSideProps = withPageAuthRequired(() => {
-  return {
-    props: {
-
-    }
-  };
-});
+  export const getServerSideProps = withPageAuthRequired({
+    async getServerSideProps(context) {
+      const props = await getAppProps(context);
+      return {
+        props,
+      };
+    },
+  });
