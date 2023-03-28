@@ -29,13 +29,14 @@ export default withApiAuthRequired (async function handler(req, res) {
         model: 'text-davinci-003',
         temperature: 0,
         max_tokens: 3600,
-        prompt: `Escriba una entrada de blog larga sobre ${topic}, que se dirige a las siguientes palabras clave separadas por comas: ${keys}.
+        prompt: `Escriba una explicación detallada sobre la resolución del problema: ${topic}, que se dirige a las siguientes palabras clave separadas por comas: ${keys}.
         El contenido debe ser formateado en HTML SEO Frendly
         El formato de regreso debe ser un stringified JSON en el siguiente formato:
         {
-            "content": Contenido del blog aquí
-            "title": Titulo aquí
+            "content": Contenido de la explicación
+            "title": Titulo del problema
             "metaDescription": La meta descripción va aquí
+            "result": Resultado del problema
         }`,
     });
 
@@ -45,6 +46,7 @@ export default withApiAuthRequired (async function handler(req, res) {
         content: parsed?.content,
         title: parsed?.title,
         metaDescription: parsed?.metaDescription,
+        result: parsed?.result,
         topic,
         keywords: keys,
         userId: userProfile._id,
@@ -52,5 +54,7 @@ export default withApiAuthRequired (async function handler(req, res) {
     });
 
     console.log('Response', response);
-    res.status(200).json({ post: JSON.parse(response.data.choices[0]?.text.split("\n").join("")) });
+    res.status(200).json({
+        postId: post.insertedId,
+    });
 });

@@ -1,10 +1,10 @@
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { AppLayout } from "../../components/AppLayout";
 
 export default function CreatePost(props) {
-
-    const [content, setContent] = useState("");
+    const router = useRouter();
     const [topic, setTopic] = useState("");
     const [keys, setKeys] = useState("");
 
@@ -20,13 +20,16 @@ export default function CreatePost(props) {
 
       const json = await (await res).json();
       console.log(json);
-      setContent(json.post.content);
+      // setContent(json.post.content);
+      if(json?.postId){
+        router.push(`/post/${json.postId}`);
+      }
     }
 
     return <div> 
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Genera un tutorial sobre:</label>
+          <label>Introduce el problema:</label>
           <textarea className="resize-none border border-gray-500 w-full block my-3 px-5 py-2 rounded-sm" value={topic} onChange={e => setTopic(e.target.value)}></textarea>
         </div>
         <div>
@@ -36,7 +39,6 @@ export default function CreatePost(props) {
         <button className="btn" type="submit">Generar</button>
       </form>
       
-      <div className="max-w-screen-sm p-9" dangerouslySetInnerHTML={{__html: content}}></div>
     </div>;
   }
 
