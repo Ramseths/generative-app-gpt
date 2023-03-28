@@ -7,7 +7,7 @@ export default function Home() {
      
      <div className="relative z-10 px-10 text-white py-5 text-center max-w-screen-sm bg-slate-900/90 rounded-md backdrop-blur-sm">
        <Logo/>
-        <p className="mb-4">Esta aplicación de SaaS con IA utiliza el modelo de lenguaje GPT (Generative Pre-trained Transformer) para generar contenido de blog.</p>
+        <p className="mb-4">Esta aplicación de SaaS con IA utiliza el modelo de lenguaje GPT (Generative Pre-trained Transformer) para resolver problemas matemáticos.</p>
         <Link href="/post/create" className="btn">Entrar</Link>
      </div>
   </div>
