@@ -17,4 +17,12 @@ A web application built with NextJS, Tailwind, OpenAI, MongoDB & Auth0 to genera
 3. **Generate solution:** The system generates a request to the **text-davinci-003** model, saves the result as a record in **MongoDB**, and retrieves the record to display the problem solution in an appreciable way 🧪
 4. **In progress:** Work continues to improve the GUI, deploy the project, and migrate from **LLMs models** 🚧
 
+## :movie_camera: Demo Images - Available in Spanish only
+
+![Context](img/demo1.png)
+
+![Solution](img/demo2.png)
+
+
+
 Happy problem-solving! 🎉
