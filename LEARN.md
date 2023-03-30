@@ -1,5 +1,3 @@
-# 📚 LEARN.md
-
 ## 🚀 Project Introduction
 
 This project is a web application built with NextJS, Tailwind, OpenAI & Auth0 to generate code and responses to mathematical statements.
