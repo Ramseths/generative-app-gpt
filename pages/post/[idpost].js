@@ -8,8 +8,6 @@ import { getAppProps } from "../../lib/getAppProps";
 
 export default function Post(props) {
 
-    console.log("PROPS", props);
-
     return (
       <div className="overflow-auto h-full">
       <div className="max-w-screen-sm mx-auto">

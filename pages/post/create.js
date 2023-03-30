@@ -27,10 +27,10 @@ export default function CreatePost(props) {
       }
     }
 
-    return <div> 
-      <form onSubmit={handleSubmit}>
+    return <div className="w-full h-full flex overflow-auto"> 
+      <form onSubmit={handleSubmit} className="m-auto w-full max-w-screen-sm bg-slate-100 p-4 rounded-md shadow-xl border border-slate-200 shadow-slate-200">
         <div>
-          <label>Introduce:</label>
+          <label>Introduce el problema a resolver:</label>
           <textarea className="resize-none border border-gray-500 w-full block my-3 px-5 py-2 rounded-sm" value={topic} onChange={e => setTopic(e.target.value)}></textarea>
         </div>
         <div>
